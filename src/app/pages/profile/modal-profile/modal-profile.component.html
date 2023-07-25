@@ -1,0 +1,90 @@
+<form class="form-group" #form="ngForm" (ngSubmit)="onSave()" #monFormulairej=ngForm autocomplete="off">
+    <nb-card class="scrollWindow">
+        <nb-card-body>
+            <div class="row" *ngIf="!isAdmin">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="nom" class="label">Nom</label>
+                        <input type="text" class="form-control" [(ngModel)]="no" nbInput required placeholder="Nom" name="nom" #name="ngModel"/>
+                        <ng-container *ngIf="name.invalid && name.touched">
+                            <p class="caption status-danger" *ngIf="name.errors?.required">
+                              Le nom est obligatoir!
+                            </p>
+                          </ng-container>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="prenom" class="label">Prénom</label>
+                        <input type="text" class="form-control" [(ngModel)]="pr" nbInput required placeholder="Prenom" name="prenom" #prenom="ngModel" />
+                        <ng-container *ngIf="prenom.invalid && prenom.touched">
+                            <p class="caption status-danger" *ngIf="prenom.errors?.required">
+                              Le prénom est obligatoir!
+                            </p>
+                          </ng-container>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="telephone" class="label">Télephone</label>
+                        <input type="text" class="form-control" [(ngModel)]="te" nbInput required placeholder="Télephone"
+                            name="telephone" #tel="ngModel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{3})(( x| ext)\d{1,5}){0,1}$"/>
+                            <ng-container *ngIf="tel.invalid && tel.touched">
+                                <p class="caption status-danger" *ngIf="tel.errors?.required">
+                                  Le numéro de téléphone est obligatoir!
+                                </p>
+                                <p class="caption status-danger" *ngIf="tel.errors?.pattern">
+                                  Le numéro de téléphone devrait être vrai!
+                                </p>
+                              </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="!isAdmin">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="addresse" class="label">Addresse</label>
+                        <input type="text" class="form-control" [(ngModel)]="ad" nbInput placeholder="Addresse"
+                            name="addresse"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="email" class="label">E-mail</label>
+                        <input type="email" class="form-control" [(ngModel)]="em" nbInput required  placeholder="Email" name="email" 
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" />
+                        <ng-container *ngIf="email.invalid && email.touched">
+                            <p class="caption status-danger" *ngIf="email.errors?.required">
+                              L'email est obligatoir!
+                            </p>
+                            <p class="caption status-danger" *ngIf="email.errors?.pattern">
+                              L'email devrait être vrai!
+                            </p>
+                          </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="pseudo" class="label">Pseudo</label>
+                        <input type="text" class="form-control" nbInput [(ngModel)]="userAccount.pseudo" placeholder="Pseudo" name="pseudo"  />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="mdp" class="label">Mot de passe</label>
+                        <input type="text" class="form-control" nbInput [(ngModel)]="userAccount.mdp" placeholder="Mot de passe" name="mdp" />
+                        
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <div style="text-align:right;">
+                <button nbButton hero status="primary" type="submit" [disabled]=!monFormulairej.valid>Modifier</button>
+                <button nbButton hero status="warning" (click)="fermer();" style="margin-left: 30px;">Annuler</button>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+</form>

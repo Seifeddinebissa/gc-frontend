@@ -1,0 +1,63 @@
+<form class="form-group" #form="ngForm" #monFormulairej=ngForm autocomplete="off">
+    <nb-card class="scrollWindow">
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="nom" class="label">Nom</label>
+                        <input type="text" class="form-control" [(ngModel)]="agentParc.nom" nbInput required
+                            placeholder="Nom" name="nom" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="prenom" class="label">Prénom</label>
+                        <input type="text" class="form-control" [(ngModel)]="agentParc.prenom" nbInput required
+                            placeholder="Prenom" name="prenom" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="telephone" class="label">Télephone</label>
+                        <input type="text" class="form-control" [(ngModel)]="agentParc.tel" nbInput required
+                            placeholder="Télephone" name="telephone" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="addresse" class="label">Addresse</label>
+                        <input type="text" class="form-control" [(ngModel)]="agentParc.addresse" nbInput required
+                            placeholder="Addresse" name="addresse" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="email" class="label">E-mail</label>
+                        <input type="email" class="form-control" [(ngModel)]="agentParc.email" nbInput required
+                            placeholder="Email" name="email" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="pseudo" class="label">Pseudo</label>
+                        <input type="text" class="form-control" [value]="user.pseudo" nbInput required placeholder="Pseudo" name="pseudo"
+                            readonly />
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="mdp" class="label">Mot de passe</label>
+                        <input type="text" class="form-control" [value]="user.mdp" nbInput placeholder="Mot de passe" name="mdp"
+                            readonly />
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+
+    </nb-card>
+</form>

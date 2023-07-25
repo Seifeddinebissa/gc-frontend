@@ -1,0 +1,73 @@
+@font-face {
+    font-family: mirai;
+    src: url(../../../assets/fonts/mirai-medium.ttf);
+  }
+
+  #profile-picture {
+    width: 150px;
+    height: 150px;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #f7f9fc;
+    border: 1px solid #000;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%);
+    
+  }
+
+  :host {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .card-row {
+    display: flex;
+    margin: 0 -0.5rem;
+  }
+  
+  .card-col1 {
+    flex: 1 0 calc(40% - 1rem);
+    margin: 0 0.5rem;
+  }
+  .card-col2 {
+    flex: 1 0 calc(60% - 1rem);
+    margin: 0 0.5rem;
+  }
+
+
+  #pseudo {
+    position: absolute;
+    font-size: large;
+    font-weight: bold;
+    font-family: mirai;
+    letter-spacing: 1px;
+  top: 63%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  }
+
+  #btn{
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%);
+  }
+
+  #list-item{
+    font-size: small;
+    font-family: sans-serif;
+    font-weight: bold;
+  }
+
+  #span{
+    position: absolute;
+    left: 50%;
+    font-weight: bold;
+    color: #505d77;
+  }

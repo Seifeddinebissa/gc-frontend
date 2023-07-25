@@ -1,0 +1,12 @@
+<nb-card>
+    <nb-card-header>
+        Liste des utilisateurs
+    </nb-card-header>
+    <p-confirmDialog [style]="{width: '30%'}" [baseZIndex]="10000"></p-confirmDialog>
+    <nb-card-body style="padding-left: 0px;">
+        <ng2-smart-table [settings]="settings" [source]="source" (editConfirm)="onSaveConfirm($event)"
+            (createConfirm)="onCreateConfirm($event)" (deleteConfirm)="confirmDelete($event)">
+        </ng2-smart-table>
+       
+    </nb-card-body>
+</nb-card>

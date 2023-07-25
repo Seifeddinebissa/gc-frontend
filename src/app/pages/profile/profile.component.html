@@ -1,0 +1,27 @@
+<div class="card-row">
+    <div class="card-col1">
+      <nb-card size="small">
+        <nb-card-body class="nb-card">
+            <div id="profile-picture">{{p}}</div>
+            <div id="pseudo">{{userAccount.pseudo}}</div>
+            <button nbButton status="primary" id="btn" (click)="openWindow()"><nb-icon icon="edit-2-outline"></nb-icon>Modifier</button>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="card-col2">
+    <nb-card size="medium">
+        <nb-card-header>Informations personnelles</nb-card-header>
+        <nb-card-body>
+            <nb-list>
+                <nb-list-item id="list-item">Type de compte<span id="span">{{role}}</span></nb-list-item>
+                <nb-list-item id="list-item" *ngIf="!isAdmin">Nom<span id="span">{{nom}}</span></nb-list-item>
+                <nb-list-item id="list-item" *ngIf="!isAdmin">Prenom<span id="span">{{prenom}}</span></nb-list-item>
+                <nb-list-item id="list-item" *ngIf="!isAdmin">Email<span id="span">{{email}}</span></nb-list-item>
+                <nb-list-item id="list-item" *ngIf="!isAdmin">Téléphone<span id="span">{{tel}}</span></nb-list-item>
+                <nb-list-item id="list-item" *ngIf="!isAdmin">Adresse<span id="span">{{addresse}}</span></nb-list-item>
+              </nb-list>
+        </nb-card-body>
+    </nb-card>
+      
+    </div>
+</div>

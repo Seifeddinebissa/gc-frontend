@@ -1,0 +1,48 @@
+<form class="form-group">
+    <nb-card class="scrollWindow">
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="conteneur" class="label">Conteneur</label>
+                        <input type="text" class="form-control" [value]="marquage" nbInput name="conteneur" readonly/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="typeDem" class="label">Type de demande</label>
+                        <input type="text" class="form-control" [value]="demande.typeDemande" nbInput name="typeDem" readonly/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="etat" class="label">Etat de demande</label>
+                        <input type="text" class="form-control" [value]="demande.etat"  nbInput name="etat" readonly/>
+                    </div> 
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="parc" class="label">Parc</label>
+                        <input type="text" class="form-control" [value]="parc.name" nbInput name="parc" readonly/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div  class="col-sm-6">
+                    <div class="form-group">
+                        <label for="armateur" class="label">Armateur</label>
+                        <input type="text" class="form-control" [value]="fullNameArmateur" nbInput name="armateur" readonly/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="agent" class="label">Agent</label>
+                        <input type="text" class="form-control" [value]="fullNameAgent" nbInput name="agent" readonly/>
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+</form>

@@ -1,0 +1,135 @@
+<nb-card>
+    <nb-card-body>
+        <nb-tabset fullWidth>
+            <nb-tab tabTitle="Formulaire" id="Formulaire">
+                <form class="form-group" #form="ngForm" (ngSubmit)="onSave()" #monFormulairej=ngForm autocomplete="off">
+                    <nb-card class="scrollWindow">
+                        <nb-card-body>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="marquage" class="label">Matricule</label>
+                                        <input type="text" class="form-control" nbInput required placeholder="Matricule" name="marquage" [(ngModel)]="conteneur.marquage" #marquage="ngModel" (change)="checkMarquage(conteneur.marquage)"/>
+                                        <ng-container *ngIf="marquage.touched">
+                                            <p class="caption status-danger" *ngIf="marquage.errors?.required">
+                                              Matricule est obligatoir!
+                                            </p>
+                                            <p class="caption status-danger" *ngIf="msg!=null">
+                                              {{msg}}
+                                            </p>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="couleur1" class="label">Couleur 1</label>
+                                        <input type="color" class="form-control" nbInput required name="couleur1" [(ngModel)]="conteneur.couleur1" #couleur1="ngModel"/>
+                                        <ng-container *ngIf="couleur1.invalid && couleur1.touched">
+                                            <p class="caption status-danger" *ngIf="couleur1.errors?.required">
+                                                La couleur est obligatoir!
+                                            </p>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="couleur2" class="label">Couleur 2</label>
+                                        <input type="color" class="form-control" nbInput  name="couleur2" [(ngModel)]="conteneur.couleur2" #couleur2="ngModel"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="typeConteneur" class="label">Type conteneur</label>
+                                        <ng-select 
+                                            #typeConteneur="ngModel"
+                                            required [items]="types" 
+                                            bindLabel="nom"  
+                                            bindValue="id" 
+                                            [(ngModel)]="selectedType" 
+                                            name="type"
+                                            notFoundText="Liste vide" 
+                                            placeholder="Sélectionner ou Chercher" 
+                                            appendTo="body"
+                                            #type="ngModel"
+                                            (change)="onChangeType($event)">
+                                        </ng-select>
+                                        <ng-container *ngIf="typeConteneur.invalid && typeConteneur.touched">
+                                            <p class="caption status-danger" *ngIf="typeConteneur.errors?.required">
+                                                le type est obligatoir!
+                                            </p>
+                                        </ng-container>
+                                        </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="taille" class="label">Taille</label>
+                                        <nb-select placeholder="Sélectionner" required [(ngModel)]="conteneur.taille" name="taille" id="taille" #taille="ngModel">
+                                            <nb-option value="20ft">20ft</nb-option>
+                                            <nb-option value="22ft">22ft</nb-option>
+                                            <nb-option value="40ft">40ft</nb-option>
+                                            <nb-option value="44ft">44ft</nb-option>
+                                        </nb-select>
+                                        <ng-container *ngIf="taille.invalid && taille.touched">
+                                            <p class="caption status-danger" *ngIf="taille.errors?.required">
+                                                le taille est obligatoir!
+                                            </p>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="armateur" *ngIf="isAdmin">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="armateur" class="label">Armateur</label>
+                                        <ng-select 
+                                            #armateur="ngModel"
+                                            required [items]="armateurs" 
+                                            bindLabel="fullName"  
+                                            bindValue="id" 
+                                            [(ngModel)]="selectedArmateur" 
+                                            name="armateur"
+                                            notFoundText="Liste vide" 
+                                            placeholder="Sélectionner ou Chercher" 
+                                            appendTo="body">
+                                        </ng-select>
+                                        <ng-container *ngIf="armateur.invalid && armateur.touched">
+                                            <p class="caption status-danger" *ngIf="armateur.errors?.required">
+                                                l'armateur est obligatoir!
+                                            </p>
+                                        </ng-container>
+                                        </div>
+                                </div>
+                            </div>
+                        </nb-card-body>
+                        <nb-card-footer>
+                            <div style="text-align:right;">
+                                <button nbButton hero status="warning" (click)="fermer();" >Annuler</button>
+                                <button nbButton hero status="success" type="submit" style="margin-left: 30px;" [disabled]="!monFormulairej.valid || msg!=null">{{T}}</button>
+                            </div>
+                        </nb-card-footer>
+                    </nb-card>
+                </form>
+            </nb-tab>
+            <nb-tab tabTitle="OCR" id="OCR">
+                <div style="text-align:center">
+                    <div>
+                        <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="takePhotoAndScan($event)"
+                            *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+                            [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
+                            (initError)="handleInitError($event)"></webcam>
+                        <br />
+                        <button class="actionBtn" nbButton fullWidth hero status="warning" (click)="triggerSnapshot()">Scan</button>
+                        <br>
+                    </div>
+                </div>
+                <h4 *ngIf="errors.length > 0">Messages:</h4>
+                <ul *ngFor="let error of errors">
+                    <li>{{error | json}}</li>
+                </ul>
+            </nb-tab>
+        </nb-tabset>
+
+    </nb-card-body>
+</nb-card>

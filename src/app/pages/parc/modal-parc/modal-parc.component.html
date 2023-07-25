@@ -1,0 +1,57 @@
+<form class="form-group" #form="ngForm" (ngSubmit)="onSave()" #monFormulairej=ngForm autocomplete="off">
+    <nb-card class="scrollWindow">
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="name" class="label">Name</label>
+                        <input type="text" class="form-control" #name="ngModel" [(ngModel)]="parc.name" nbInput required
+                            placeholder="Name" name="nom" />
+                    </div>
+                    <ng-container *ngIf="name.invalid && name.touched">
+                        <p class="caption status-danger" *ngIf="name.errors?.required">
+                            Le name est obligatoire!
+                        </p>
+                    </ng-container>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="addresse" class="label">Adresse</label>
+                        <input type="text" class="form-control" #adresse="ngModel" [(ngModel)]="parc.addresse" nbInput
+                            required placeholder="Adresse" name="prenom" />
+                    </div>
+                    <ng-container *ngIf="adresse.invalid && adresse.touched">
+                        <p class="caption status-danger" *ngIf="adresse.errors?.required">
+                            L'adresse est obligatoire!
+                        </p>
+                    </ng-container>
+
+                </div>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="capacite" class="label">Capacité</label>
+                        <input type="number" #capacite="ngModel" class="form-control" min="0"
+                            [(ngModel)]="parc.capacite" nbInput required placeholder="Capacite" name="addresse" />
+                    </div>
+                    <ng-container *ngIf="capacite.invalid && capacite.touched">
+                        <p class="caption status-danger" *ngIf="capacite.errors?.required">
+                            La valeur de capacité est obligatoire!
+                        </p>
+                    </ng-container>
+
+                </div>
+            </div>
+
+        </nb-card-body>
+        <nb-card-footer>
+            <div style="text-align:right;">
+                <button nbButton hero status="warning" (click)="fermer();" >Annuler</button>
+                <button nbButton hero status="success" style="margin-left: 30px;" type="submit" [disabled]=!monFormulairej.valid>{{T}}</button>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+</form>

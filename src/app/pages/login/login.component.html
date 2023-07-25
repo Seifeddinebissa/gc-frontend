@@ -1,0 +1,28 @@
+<h1 id="title" class="title"><img src="assets/images/logo1.png"
+    style="height: 50px; width: auto; top: -25px; position: relative;"></h1>
+<h1 id="title" class="title">Connexion</h1>
+<form aria-labelledby="title" #form="ngForm" #monFormulairej=ngForm autocomplete="off">
+  <div class="row full-name-inputs label nvForm">
+    <input type="text" class="form-control" nbInput required fullWidth placeholder="Login" name="login"
+      [(ngModel)]="user.pseudo" />
+  </div>
+  <div class="row full-name-inputs label nvForm">
+    <nb-form-field style="width: 246%;">
+    <input [type]="getInputType()" class="form-control" nbInput required fullWidth placeholder="Mot de passe" name="mot de passe"
+      [(ngModel)]="user.mdp" />
+      <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+        <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                 pack="eva"
+                 [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+        </nb-icon>
+      </button>
+
+    </nb-form-field>
+  </div>
+  <button nbButton fullWidth status="primary" type="submit" (click)="connecter()" [disabled]=!monFormulairej.valid size="large">
+    Connexion
+  </button>
+  <div style="display: flex;justify-content: end;">
+  <a (click)="onClick()" style="color: red; cursor: pointer;">Mot de passe oublié?</a>
+</div>
+</form>

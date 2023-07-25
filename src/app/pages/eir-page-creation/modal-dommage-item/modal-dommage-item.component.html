@@ -1,0 +1,85 @@
+<form class="form-group" #form="ngForm" (ngSubmit)="onSave()" #monFormulairej=ngForm autocomplete="off">
+<nb-card class="scrollWindow">
+        <nb-card-body>
+
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label for="inputDescription" class="label">Description</label>
+                    <ng-select class="select" required placeholder="Type de dommage" #dommage="ngModel" name="inputDescription" bindLabel="intitule"
+                        [items]="listeDommage" bindValue="id" [(ngModel)]="selectedDescription" appendTo="body" notFoundText="Liste vide">
+                    </ng-select>
+                    <ng-container *ngIf="dommage.invalid && dommage.touched">
+                        <span class="caption status-danger" *ngIf="dommage.errors?.required">
+                           Type dommage est obligatoire!
+                        </span>
+                    </ng-container>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="inputPosition" class="label">Position</label>
+                    <input type="text" class="form-control" nbInput [(ngModel)]="dommageItem.position" (blur)="verifPosition(dommageItem.position)" placeholder="Position" name="position" id="position" #position="ngModel" required/>
+                    <ng-container *ngIf="position.touched">
+                        <span class="caption status-danger" *ngIf="position.errors?.required">
+                          La position est obligatoire!
+                        </span>
+                        <span class="caption status-danger" *ngIf="msg!=null && !position.errors?.required">
+                            {{msg}}
+                          </span> 
+                    </ng-container>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="Dommage" class="label">Dommage</label>
+                    <ng-select [items]="dommages"  name="Dommage" bindLabel="name" bindValue="id" required #dommageValue="ngModel" placeholder="Sélectionner" [(ngModel)]="selectedDommage" appendTo="body">
+                    </ng-select>
+
+                    <ng-container *ngIf="dommageValue.invalid && dommageValue.touched">
+                        <span class="caption status-danger" *ngIf="dommageValue.errors?.required">
+                            Le dommage est obligatoire!
+                        </span>
+                    </ng-container>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label for="inputWebsite" class="label">Nombre</label>
+                    <input type="number" class="form-control" nbInput [(ngModel)]="dommageItem.unite" placeholder="Nombre" min="0" name="nombre" />
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="inputWebsite" class="label">Longeur</label>
+                    <input type="number" class="form-control" nbInput [(ngModel)]="dommageItem.longeur" placeholder="Longeur" min="0" name="Longeur" />
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="inputWebsite" class="label">Largeur</label>
+                    <input type="number" class="form-control"  nbInput [(ngModel)]="dommageItem.largeur" placeholder="Largeur"  min="0" name="Largeur" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="detail" class="label">Details</label>
+                    <ng-select [items]="details" bindLabel="name" bindValue="id" placeholder="Sélectionner" [(ngModel)]="selectedDetail" name="detail" appendTo="body"></ng-select>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="anciennete" class="label">Ancienneté</label>
+                    <ng-select name="anciennete" placeholder="Ancienneté" [(ngModel)]="dommageItem.anciennete" appendTo="body">
+                        <ng-option [value]="'RC'">RC</ng-option>
+                        <ng-option [value]="'AG'">AG</ng-option>
+                        <ng-option [value]="'AC'">AC</ng-option>
+                    </ng-select>
+
+                </div>
+            </div>
+
+</nb-card-body>
+<nb-card-footer>
+    <div style="text-align:right;">
+        <button nbButton hero status="danger"  (click)="fermer()">Annuler</button>
+        <button nbButton hero status="success" style="margin-left: 30px;" type="submit">{{T}}</button>
+    </div>
+</nb-card-footer>
+</nb-card>
+</form>

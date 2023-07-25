@@ -1,0 +1,11 @@
+<nb-card>
+    <nb-card-header class="text-center">
+        <nb-button-group status="warning" (valueChange)="changeButton($event)">
+            <button nbButtonToggle value="my" pressed>Mes demandes</button>
+            <button nbButtonToggle value="all">Tout les demandes</button>
+          </nb-button-group>
+    </nb-card-header>
+    <nb-card-body>
+        <router-outlet></router-outlet>
+    </nb-card-body>
+</nb-card>

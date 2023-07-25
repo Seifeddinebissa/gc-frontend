@@ -1,0 +1,69 @@
+nb-card-body {
+  overflow: visible;
+  padding-top: 0;
+
+  > * {
+    margin-top: 1rem;
+  }
+}
+
+.full-name-inputs,
+.validation-checkboxes {
+  display: flex;
+  margin: 0 -0.5rem;
+
+  > * {
+    margin: 0 0.5rem;
+  }
+}
+
+.checkbox-radio {
+  display: flex;
+}
+
+.demo-items {
+  flex: 1 0 33%;
+}
+
+:host /deep/ ng2-st-tbody-edit-delete {display: inline-block !important;
+  height: 0 !important;
+ }
+ 
+ :host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
+  display: inline;
+  width: 20%;
+  text-align: center;
+ }
+ 
+ :host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom:hover {
+  color: #5DCFE3;
+ }
+div.addbtn{
+  margin: 0.2rem;
+  
+}
+:host /deep/ ng2-st-tbody-custom select{
+  height:50px ;
+}
+
+.nb-shuffle { cursor: pointer; }
+
+      li {
+        display: inline;
+      }
+  
+      ul {
+        overflow: hidden
+      }
+  
+      li:hover {
+        cursor: pointer;
+      }
+
+.select{
+  width: 90%;
+}     
+
+#table{
+  margin-top: 2%;
+}

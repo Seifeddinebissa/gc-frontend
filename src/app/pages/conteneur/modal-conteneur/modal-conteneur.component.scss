@@ -1,0 +1,27 @@
+:host nb-tab {
+    padding: 1.25rem;
+  }
+  @import '../../../@theme/styles/themes';
+
+  @include nb-install-component() {
+    ::ng-deep .form {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  .scrollWindow {
+    max-height: 500px;
+    min-height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+  }
+
+  #taille{
+    width: 100%;
+  }
+  #armateur{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

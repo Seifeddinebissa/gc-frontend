@@ -1,0 +1,26 @@
+
+<form class="form-group" #form="ngForm" (ngSubmit)="send()" #monFormulairej=ngForm autocomplete="off">
+    <nb-card class="scrollWindow">
+        <nb-card-body>
+            <div class="form-group">
+                <label for="nom" class="label">Email</label>
+                <input type="email" class="form-control" [(ngModel)]="value" nbInput required placeholder="Email" name="email"
+                    #email="ngModel" />
+                <ng-container *ngIf="email.invalid && email.touched">
+                    <p class="caption status-danger" *ngIf="email.errors?.required">
+                        Email est obligatoir!
+                    </p>
+                </ng-container>
+            </div>
+            <div  style="display: flex; justify-content: center; align-items: center;">
+                <p style="color: red;">{{msg}}</p>
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <div style="text-align:right;">
+                <button nbButton hero status="success" type="submit" [disabled]=!monFormulairej.valid>Envoyer</button>
+                <button nbButton hero status="warning" (click)="fermer();" style="margin-left: 30px;">Annuler</button>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+</form>

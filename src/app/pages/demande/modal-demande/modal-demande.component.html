@@ -1,0 +1,133 @@
+<form class="form-group" #form="ngForm" (ngSubmit)="onSave()" #monFormulairej=ngForm autocomplete="off">
+    <nb-card class="scrollWindow">
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="type" class="label">Type de demande</label>
+                        <ng-select 
+                            required
+                            [items]="types" 
+                            bindLabel="bindLable" 
+                            bindValue="bindValue" 
+                            [(ngModel)]="selectedType" 
+                            name="type"
+                            notFoundText="Liste vide" 
+                            placeholder="Sélectionner ou Chercher" 
+                            appendTo="body"
+                            #type="ngModel"
+                            (change)="onChangeType($event)">
+                        </ng-select>
+                        <ng-container *ngIf="type.invalid && type.touched">
+                            <p class="caption status-danger" *ngIf="type.errors?.required">
+                              Sélectionner un type!
+                            </p>
+                        </ng-container>
+                    </div>
+                </div> 
+            
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="conteneur" class="label">Conteneur</label>
+                        <ng-select 
+                        required
+                        [items]="demandesByType"
+                        bindLabel="marquage" 
+                        bindValue="id" 
+                        [(ngModel)]="selectedConteneur" 
+                        name="conteneur"
+                        notFoundText="Liste vide" 
+                        placeholder="Sélectionner ou Chercher"
+                        appendTo="body"
+                        #conteneur="ngModel"
+                        [disabled]="disabledConteneur"
+                        (change)="onChangeConteneur($event)">                        
+                        </ng-select>
+                        
+                        <ng-container *ngIf="conteneur.invalid && conteneur.touched">
+                            <p class="caption status-danger" *ngIf="conteneur.errors?.required">
+                              Sélectionner un conteneur!
+                            </p>
+                        </ng-container>
+                    </div>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="parc" class="label">Parc</label>
+                        <ng-select
+                            [disabled]="disabledParc"
+                            id="parc"
+                            required
+                            [items]="parcs" 
+                            bindLabel="name" 
+                            bindValue="id" 
+                            [(ngModel)]="selectedParc" 
+                            name="parc" 
+                            notFoundText="Liste vide" 
+                            placeholder="Sélectionner ou Chercher"
+                            appendTo="body"
+                            #parc="ngModel">
+                        </ng-select>
+                        
+                        <ng-container *ngIf="parc.invalid && parc.touched">
+                            <p class="caption status-danger" *ngIf="parc.errors?.required">
+                              Sélectionner un parc!
+                            </p>
+                        </ng-container>
+                    </div>
+                </div> 
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="phase" class="label">Phase</label>
+                        <nb-select placeholder="Sélectionner phase" id="taille" [(selected)]="selectedPhase" name="phase">
+                            <nb-option value="chargé">Chargée</nb-option>
+                            <nb-option value="vide">Vide</nb-option>
+                        </nb-select>
+                        
+                        <ng-container *ngIf="parc.invalid && parc.touched">
+                            <p class="caption status-danger" *ngIf="parc.errors?.required">
+                              Sélectionner une phase!
+                            </p>
+                        </ng-container>
+                    </div>
+                </div> 
+            </div>
+            <div class="row" id="tr">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="transporteur" class="label">Transporteur</label>
+                        <ng-select
+                            id="transporteur"
+                            required
+                            [items]="transporteurs" 
+                            bindLabel="fullName" 
+                            bindValue="id" 
+                            [(ngModel)]="selectedTransporteur" 
+                            name="transporteur" 
+                            notFoundText="Liste vide" 
+                            placeholder="Sélectionner ou Chercher"
+                            appendTo="body"
+                            #transporteur="ngModel">
+                        </ng-select>
+                        
+                        <ng-container *ngIf="parc.invalid && parc.touched">
+                            <p class="caption status-danger" *ngIf="parc.errors?.required">
+                              Sélectionner une phase!
+                            </p>
+                        </ng-container>
+                    </div>
+                    </div>
+                    
+                
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <div style="text-align:right;">
+                <button nbButton hero status="warning" (click)="fermer();" >Annuler</button>
+                <button nbButton hero status="success" type="submit" style="margin-left: 30px;" [disabled]="!monFormulairej.valid || msg != null">{{T}}</button>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+</form>

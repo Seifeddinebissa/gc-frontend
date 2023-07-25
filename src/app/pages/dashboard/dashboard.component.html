@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-lg-6">
+        <nb-card>
+            <nb-card-header>Demande</nb-card-header>
+            <nb-card-body>
+                <ngx-echarts-pie-etat></ngx-echarts-pie-etat>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-lg-6">
+        <nb-card>
+            <nb-card-header>Conteneur</nb-card-header>
+            <nb-card-body>
+                <ngx-echarts-pie-conteneur></ngx-echarts-pie-conteneur>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+<div class="row" *ngIf="!isArmateur">
+    <div class="col-lg-6">
+        <nb-card>
+            <nb-card-header>Activité armateurs:</nb-card-header>
+            <nb-card-body>
+                <ngx-armateur-activite></ngx-armateur-activite>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-lg-6">
+        <nb-card>
+            <nb-card-header>Activité agents parc:</nb-card-header>
+            <nb-card-body>
+                <ngx-agent-activite></ngx-agent-activite>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

@@ -1,0 +1,184 @@
+<p-confirmDialog [style]="{width: '30%'}" [baseZIndex]="10000"></p-confirmDialog>
+<form class="form-group"  (ngSubmit)="onSaveEir()" #eirForm=ngForm autocomplete="off">
+    <nb-card class="scrollWindow">
+        <nb-card-header>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h5 class="text-info">Equipment Interchange Receipt</h5>
+                </div>
+                <div class="col-sm-4" style="padding-top: 12px;">
+                    <h6>Date : {{ currentDate | date:'yyyy-MM-dd' }}</h6>
+                    <h6>Heure : {{ currentDate | date:'HH:mm'}}</h6>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="vesselTerminal" class="label">Parc</label>
+                        <input type="text" class="form-control" nbInput [value]="parc.name" required placeholder="Parc" name="Parc" readonly/>
+                    </div>
+                </div>
+
+            </div>
+        </nb-card-header>
+
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="idNumber" class="label">CMatricule</label>
+                        <input type="text" class="form-control" [(ngModel)]="conteneur.marquage" nbInput required
+                        readonly placeholder="ID Number" name="idNumber" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="owner" class="label">Armateur</label>
+                        <input type="text" class="form-control" [(ngModel)]="armateur.nom" nbInput required placeholder="Armateur" readonly name="owner" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="shipper" class="label">Chargeur</label>
+                        <input type="text" class="form-control" nbInput required placeholder="Chargeur" [(ngModel)]="eir.chargeur" name="shipper" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="sealNumber" class="label">Plomb</label>
+                        <input type="text" class="form-control" nbInput placeholder="SealNumber" [(ngModel)]="eir.numSeal" name="sealNumber" #sealNumber="ngModel"/>
+                        <ng-container *ngIf="sealNumber.invalid && sealNumber.touched">
+                            <p class="caption status-danger" *ngIf="sealNumber.errors?.required">
+                                le code plomb est obligatoir!
+                            </p>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="transporter" class="label">Transporteur</label>
+                        <ng-select class="select" required placeholder="Transporteur" name="transporteur" bindLabel="nom" appendTo="body"
+                            [items]="listeTransporteur" bindValue="id" [(ngModel)]="selectedTransporteur">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="vehicleNumber" class="label">VMatricule</label>
+                        <input type="text" class="form-control" nbInput required [(ngModel)]="eir.numVehicule" placeholder="Matricule vehicule"
+                            name="vehicleNumber" #vehicleNumber="ngModel"/>
+                            <ng-container *ngIf="vehicleNumber.invalid && vehicleNumber.touched">
+                                <p class="caption status-danger" *ngIf="vehicleNumber.errors?.required">
+                                    la matricule est obligatoir!
+                                </p>
+                            </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="unitType" class="label">Type conteneur</label>
+                        <input type="text" class="form-control" nbInput [(ngModel)]="typeConteneur.nom"
+                        readonly placeholder="Unit Type" name="unitType" />
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="unitSize" class="label">Taille conteneur</label>
+                        <input type="text" class="form-control" nbInput [(ngModel)]="conteneur.taille"
+                        readonly placeholder="Unit Size" name="unitSize"/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="from" class="label">De</label>
+                        <input type="text" class="form-control" [(ngModel)]="eir.de" nbInput placeholder="From" name="from" #from="ngModel"/>
+                        <ng-container *ngIf="from.invalid && from.touched">
+                            <p class="caption status-danger" *ngIf="from.errors?.required">
+                                Lieu de départ est obligatoir!
+                            </p>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="to" class="label">Jusqua</label>
+                        <input type="text" class="form-control" nbInput required [(ngModel)]="eir.jusqua" placeholder="To" name="to" #to="ngModel"/>
+                        <ng-container *ngIf="to.invalid && to.touched">
+                            <p class="caption status-danger" *ngIf="to.errors?.required">
+                                Lieu d'arrivéé est obligatoir!
+                            </p>
+                        </ng-container>
+
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card>
+            <nb-card-header><label for="from" class="label">Phase : </label></nb-card-header>
+            <nb-card-body>
+                <div class="row">
+                    <nb-radio class="col-sm-3" [checked]="demande.typeDemande == 'Entrée'" value="Entrée" name="phase1" disabled
+                        id="e">Entré</nb-radio>
+                    <nb-radio class="col-sm-3" [checked]="demande.typeDemande == 'Sortie'" value="Sortie" name="phase1" disabled
+                        id="s">Sortie</nb-radio>
+                    <nb-radio [checked]="demande.phase == 'vide'" class="col-sm-3" value="vide" disabled name="phase2">Vide</nb-radio>
+                    <nb-radio [checked]="demande.phase == 'chargée'" class="col-sm-3" value="charge" disabled
+                        name="phase2">Chargé</nb-radio>
+                </div>
+
+            </nb-card-body>
+            <nb-card>
+                <nb-card-header><label for="inputRemarque" class="label">Remarque :</label></nb-card-header>
+                <nb-card-body>
+                    <div class="row">
+                        <div class="col-sm-11 mx-auto">
+                            <textarea nbInput fullWidth status="info" name="remarqueDechargement"
+                               [(ngModel)]="eir.remarque" placeholder="Remarque"></textarea>
+                        </div>
+                    </div>
+                </nb-card-body>
+                <nb-card-footer>
+                    <div style="text-align:right;">
+                        <button nbButton hero status="success" type="submit" [disabled]="!eirForm.valid">{{btnText}}</button>
+                        <button nbButton hero status="warning" style="margin-left: 20px;" type="button" (click)="showInDialog()" [disabled]="!showVisualiser">Visualiser</button>
+                        <button nbButton hero status="danger" style="margin-left: 20px;" type="reset">Annuler</button>
+                    </div>
+                </nb-card-footer>
+            </nb-card>
+        </nb-card>
+        <!---->
+        <nb-card-footer *ngIf="showDommage">
+            <div style="text-align:left;">
+                <button nbButton hero status="success" type="button" (click)="openWindowDommage()">Ajouter
+                    Dommage</button>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <nb-card status="info">
+                            <nb-card-header>Liste des dommages</nb-card-header>
+                            <nb-card-body id="table">
+                                <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="confirmDelete($event)"
+                            (custom)="onCustom($event)"></ng2-smart-table>
+                            </nb-card-body>
+                            <nb-card-footer><button nbButton status="info" size="small" type="button" (click)="reload()">Reload</button></nb-card-footer>
+                        </nb-card>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <nb-card status="info">
+                            <nb-card-header>Schema</nb-card-header>
+                            <nb-card-body>
+                                <img src="../../../assets/images/schema1.jpg" width="100%" height="750px">
+                            </nb-card-body>
+                        </nb-card>
+                    </div>
+
+                </div>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+</form>

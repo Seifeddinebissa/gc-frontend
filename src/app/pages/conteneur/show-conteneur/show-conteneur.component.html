@@ -1,0 +1,57 @@
+<nb-card>
+    <nb-card-body>
+                    <nb-card class="scrollWindow">
+                        <nb-card-body>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="marquage" class="label">Marquage</label>
+                                        <input type="text" class="form-control" nbInput [value]="conteneur.marquage" placeholder="Marquage" name="marquage" readonly/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="couleur1" class="label">Couleur 1</label>
+                                        <input type="color" class="form-control" nbInput [value]="conteneur.couleur1" name="couleur1" disabled/>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="couleur2" class="label">Couleur 2</label>
+                                        <input type="color" class="form-control" nbInput [value]="conteneur.couleur2" name="couleur2" disabled/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="typeConteneur" class="label">Type conteneur</label>
+                                        <input type="text" class="form-control" nbInput [value]="typeConteneur.nom" placeholder="Type de conteneur" name="typeConteneur" readonly/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="taille" class="label">Taille</label>
+                                        <input type="text" class="form-control" nbInput [value]="conteneur.taille" placeholder="Taille" name="taille" readonly/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="status" class="label">Status</label>
+                                        <input type="text" class="form-control" nbInput [value]="conteneur.status" placeholder="Status" name="status" readonly/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" *ngIf="!isArmateur">
+                                    <div class="form-group">
+                                        <label for="armateur" class="label">Armateur</label>
+                                        <input type="text" class="form-control" nbInput [value]="armateur.nom+' '+armateur.prenom" placeholder="Armateur" name="armateur" readonly/>
+                                    </div>
+                                </div>
+                            </div>
+                        </nb-card-body>
+                    </nb-card>
+    </nb-card-body>
+</nb-card>

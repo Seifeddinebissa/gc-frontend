@@ -1,0 +1,56 @@
+<form class="form-group">
+    <nb-card class="scrollWindow">
+            <nb-card-body>
+    
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="description" class="label">Description</label>
+                        <input type="text" class="form-control" nbInput [(ngModel)]="dommage.intitule" name="description" readonly />
+                    </div>
+    
+                    <div class="form-group col-sm-4">
+                        <label for="position" class="label">Position</label>
+                        <input type="text" class="form-control" nbInput [(ngModel)]="dommageItem.position"placeholder="Unit Size" name="position" readonly />
+                       
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="dommageValue" class="label">Dommage</label>
+                        <input type="text" class="form-control" nbInput [(ngModel)]="dommageItem.dommageValue" placeholder="Unit Size" name="dommageValue" readonly />
+
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="nombre" class="label">Nombre</label>
+                        <input type="text" class="form-control" nbInput [(ngModel)]="dommageItem.unite" placeholder="Unité" name="nombre" readonly/>
+                    </div>
+    
+                    <div class="form-group col-sm-4">
+                        <label for="longeur" class="label">Longeur</label>
+                        <input type="text" class="form-control" nbInput [(ngModel)]="dommageItem.longeur" placeholder="Longeur" name="longeur" readonly/>
+                    </div>
+    
+                    <div class="form-group col-sm-4">
+                        <label for="largeur" class="label">Largeur</label>
+                        <input type="text" class="form-control"  nbInput [(ngModel)]="dommageItem.largeur" placeholder="Largeur" name="largeur" readonly/>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="detail" class="label">Details</label>
+                        <input type="text" class="form-control" nbInput [(ngModel)]="dommageItem.detail" placeholder="Unit Size" name="detail" readonly />
+    
+                    </div>
+    
+                    <div class="form-group col-sm-6">
+                        <label for="anciennete" class="label">Ancienneté</label>
+                        <input type="text" class="form-control" nbInput [(ngModel)]="dommageItem.anciennete" placeholder="Unit Size" name="anciennete" readonly />
+    
+                    </div>
+                </div>
+    
+    </nb-card-body>
+    </nb-card>
+    </form>
